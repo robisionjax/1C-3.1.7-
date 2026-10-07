@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Misi RBT T3 - Menghasilkan Reka Bentuk Pengiklanan</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Nunito', 'sans-serif'],
+                        display: ['Fredoka', 'cursive', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            blue: '#3b82f6',
+                            purple: '#8b5cf6',
+                            yellow: '#f59e0b',
+                            green: '#10b981',
+                            pink: '#ec4899',
+                            bg: '#f0f9ff'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: linear-gradient(135deg, #e0f2fe 0%, #f0fdf4 50%, #fef3c7 100%);
+            min-height: 100vh;
+        }
+        .card-friendly {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border: 4px solid #ffffff;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+        }
+        .btn-friendly {
+            transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .btn-friendly:hover:not(:disabled) {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.12);
+        }
+        .btn-friendly:active:not(:disabled) {
+            transform: translateY(2px) scale(0.98);
+        }
+        .bubble-glow {
+            animation: bounceSlow 3s infinite ease-in-out;
+        }
+        @keyframes bounceSlow {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #e0f2fe;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #3b82f6;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen text-slate-800 antialiased selection:bg-amber-300">
+
+    <!-- Header Navbar -->
+    <header class="w-full bg-white/90 backdrop-blur-md border-b-4 border-blue-400 sticky top-0 z-50 shadow-md">
+        <div class="max-w-5xl mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="bg-gradient-to-tr from-amber-400 to-amber-300 text-slate-900 p-2.5 rounded-2xl shadow-md border-2 border-white bubble-glow">
+                    <i class="fa-solid fa-bullhorn text-2xl text-amber-900"></i>
+                </div>
+                <div>
+                    <h1 class="font-display text-xl sm:text-2xl font-bold text-blue-600 leading-none">
+                        MISI RBT TINGKATAN 3 🚀
+                    </h1>
+                    <p class="text-xs sm:text-sm text-emerald-600 font-extrabold tracking-wide mt-0.5">Subtopik 3.1.7: Menghasilkan Reka Bentuk Pengiklanan</p>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-2">
+                <button id="bgmToggleBtn" onclick="toggleBGM()" class="flex items-center gap-2 bg-blue-50 hover:bg-blue-100 text-blue-700 px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-extrabold transition-all border-2 border-blue-200">
+                    <i id="bgmIcon" class="fa-solid fa-music text-amber-500"></i>
+                    <span id="bgmStatus" class="hidden sm:inline">Muzik: ON</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="flex-grow flex items-center justify-center p-3 sm:p-6">
+        <div class="w-full max-w-3xl">
+
+            <!-- 1. LANDING & REGISTRATION SCREEN -->
+            <section id="startScreen" class="card-friendly rounded-3xl p-6 sm:p-10 text-center relative overflow-hidden my-2 border-t-8 border-t-amber-400">
+                <div class="relative z-10">
+                    <span class="inline-block bg-amber-100 text-amber-800 border-2 border-amber-300 font-black text-xs uppercase tracking-wider px-4 py-2 rounded-full mb-3 shadow-sm bubble-glow">
+                        ⭐ Latihan Interaktif Murid ⭐
+                    </span>
+                    
+                    <h2 class="font-display text-3xl sm:text-5xl font-black text-slate-800 mb-3 leading-tight">
+                        Reka Bentuk <span class="text-blue-600">Pengiklanan</span> 🎨📢
+                    </h2>
+                    
+                    <p class="text-slate-600 font-bold text-sm sm:text-base mb-6 max-w-xl mx-auto leading-relaxed">
+                        Jawab <span class="text-amber-600 font-extrabold">20 Soalan Interaktif</span> (Objektif & Betul/Salah) dengan bantuan <span class="text-purple-600 font-extrabold">Kad Booster Power-Up</span>!
+                    </p>
+
+                    <!-- Student Registration Form -->
+                    <div class="bg-blue-50/70 p-5 rounded-3xl max-w-md mx-auto mb-6 border-2 border-blue-200 text-left shadow-inner">
+                        <label class="block text-xs font-black text-blue-800 uppercase mb-1">Nama Anda / Murid <span class="text-rose-500">*</span></label>
+                        <div class="relative mb-3">
+                            <i class="fa-solid fa-user-circle absolute left-3.5 top-3.5 text-blue-400 text-lg"></i>
+                            <input type="text" id="playerName" placeholder="Contoh: Amirah Husna" class="w-full bg-white border-2 border-blue-200 rounded-2xl py-3 pl-10 pr-3 text-sm font-bold text-slate-800 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all">
+                        </div>
+
+                        <label class="block text-xs font-black text-blue-800 uppercase mb-1">Kelas <span class="text-rose-500">*</span></label>
+                        <div class="relative mb-4">
+                            <i class="fa-solid fa-school absolute left-3.5 top-3.5 text-blue-400 text-lg"></i>
+                            <input type="text" id="playerClass" placeholder="Contoh: 3 Cemerlang" class="w-full bg-white border-2 border-blue-200 rounded-2xl py-3 pl-10 pr-3 text-sm font-bold text-slate-800 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all">
+                        </div>
+
+                        <label class="block text-xs font-black text-amber-800 uppercase mb-1">Pilih Bahagian Soalan:</label>
+                        <div class="relative">
+                            <i class="fa-solid fa-book-open absolute left-3.5 top-3.5 text-amber-500 text-lg"></i>
+                            <select id="subtopicFilter" class="w-full bg-white border-2 border-amber-200 rounded-2xl py-3 pl-10 pr-3 text-sm font-extrabold text-slate-700 focus:border-amber-500 focus:ring-2 focus:ring-amber-200 outline-none transition-all appearance-none cursor-pointer">
+                                <option value="ALL">🌟 Semua Soalan (20 Soalan)</option>
+                                <option value="Bahagian A">📌 Bahagian A (Objektif 1-15)</option>
+                                <option value="Bahagian B">📌 Bahagian B (Betul/Salah 16-20)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="flex flex-col sm:flex-row justify-center gap-3">
+                        <button onclick="startQuiz()" class="btn-friendly bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white font-display text-lg sm:text-xl font-bold px-8 py-3.5 rounded-2xl shadow-lg border-2 border-emerald-300 inline-flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-play-circle text-2xl"></i>
+                            <span>MULA MENCUBA!</span>
+                        </button>
+                        <button onclick="toggleLeaderboardModal(true)" class="btn-friendly bg-gradient-to-r from-amber-400 to-yellow-500 hover:from-amber-500 hover:to-yellow-600 text-slate-900 font-display text-lg sm:text-xl font-bold px-6 py-3.5 rounded-2xl shadow-lg border-2 border-amber-200 inline-flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-trophy text-slate-900"></i>
+                            <span>Papan Ranking</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. QUIZ SCREEN -->
+            <section id="quizScreen" class="hidden card-friendly rounded-3xl p-5 sm:p-8 relative my-2 border-t-8 border-t-blue-500">
+                <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-3 mb-4 pb-3 border-b-2 border-slate-100">
+                    <div class="flex items-center justify-between sm:justify-start gap-3">
+                        <span id="subtopicBadge" class="bg-blue-100 text-blue-800 border-2 border-blue-200 text-xs font-black px-3.5 py-1.5 rounded-xl uppercase tracking-wider">
+                            Bahagian A
+                        </span>
+                        <div class="flex items-center gap-2 text-amber-800 text-xs sm:text-sm font-black bg-amber-100 px-3.5 py-1.5 rounded-xl border-2 border-amber-200">
+                            <i class="fa-solid fa-star text-amber-500 text-base"></i>
+                            <span>MARKAH: <span id="liveScore" class="text-base text-blue-700">0</span></span>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-2 text-xs font-extrabold text-slate-700 bg-slate-100 px-3.5 py-1.5 rounded-xl border border-slate-200">
+                        <i class="fa-solid fa-user-check text-emerald-600"></i>
+                        <span id="displayPlayerInfo">Pelajar: -</span>
+                    </div>
+                </div>
+
+                <!-- Booster Cards Panel -->
+                <div class="mb-4 bg-gradient-to-r from-purple-100 via-pink-100 to-amber-100 p-3 rounded-2xl border-2 border-purple-200 shadow-sm flex flex-wrap items-center justify-between gap-2">
+                    <span class="text-xs font-black text-purple-900 uppercase tracking-wider flex items-center gap-1.5">
+                        <i class="fa-solid fa-wand-magic-sparkles text-purple-600 text-sm"></i> Bantuan Booster:
+                    </span>
+                    <div class="flex items-center gap-2">
+                        <!-- Booster 1: 50/50 -->
+                        <button id="btn5050" onclick="useBooster5050()" class="btn-friendly bg-indigo-500 hover:bg-indigo-600 disabled:opacity-40 disabled:cursor-not-allowed text-white text-xs font-extrabold px-3 py-1.5 rounded-xl flex items-center gap-1.5 shadow border border-indigo-300">
+                            <i class="fa-solid fa-scissors text-amber-300"></i>
+                            <span>50:50 (<span id="count5050">2</span>)</span>
+                        </button>
+                        <!-- Booster 2: Hint -->
+                        <button id="btnHint" onclick="useBoosterHint()" class="btn-friendly bg-amber-500 hover:bg-amber-600 disabled:opacity-40 disabled:cursor-not-allowed text-slate-900 text-xs font-extrabold px-3 py-1.5 rounded-xl flex items-center gap-1.5 shadow border border-amber-300">
+                            <i class="fa-solid fa-lightbulb text-white"></i>
+                            <span>Hint (<span id="countHint">2</span>)</span>
+                        </button>
+                        <!-- Booster 3: Skip -->
+                        <button id="btnSkip" onclick="useBoosterSkip()" class="btn-friendly bg-teal-500 hover:bg-teal-600 disabled:opacity-40 disabled:cursor-not-allowed text-white text-xs font-extrabold px-3 py-1.5 rounded-xl flex items-center gap-1.5 shadow border border-teal-300">
+                            <i class="fa-solid fa-forward text-emerald-200"></i>
+                            <span>Skip (<span id="countSkip">1</span>)</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="flex justify-between text-xs text-slate-600 font-extrabold mb-1">
+                    <span id="queueCountInfo">Baki Soalan: 20</span>
+                    <span id="progressPercentText" class="text-blue-600">0%</span>
+                </div>
+                <div class="w-full bg-slate-100 h-3.5 rounded-full mb-5 overflow-hidden p-0.5 border border-slate-200">
+                    <div id="progressBar" class="bg-gradient-to-r from-blue-400 via-emerald-400 to-amber-400 h-full rounded-full transition-all duration-300" style="width: 0%"></div>
+                </div>
+
+                <!-- Question Area -->
+                <div class="mb-5">
+                    <div class="flex items-start gap-3">
+                        <span id="questionNum" class="bg-blue-600 text-white font-display text-base font-bold w-9 h-9 rounded-2xl flex items-center justify-center shrink-0 shadow-md">
+                            1
+                        </span>
+                        <h3 id="questionText" class="text-base sm:text-lg font-black text-slate-800 leading-snug pt-0.5">
+                            Memuatkan soalan...
+                        </h3>
+                    </div>
+                </div>
+
+                <!-- Options -->
+                <div id="optionsContainer" class="grid grid-cols-1 gap-2.5 mb-5"></div>
+
+                <!-- Hint Banner -->
+                <div id="hintBanner" class="hidden p-4 rounded-2xl mb-4 text-xs sm:text-sm font-bold bg-amber-100 text-amber-900 border-2 border-amber-300 flex items-start gap-2.5 shadow-sm">
+                    <i class="fa-solid fa-lightbulb text-amber-500 text-lg mt-0.5 shrink-0"></i>
+                    <div>
+                        <span class="font-extrabold uppercase">Petunjuk Nota:</span> <span id="hintText" class="font-medium text-slate-800"></span>
+                    </div>
+                </div>
+
+                <!-- Feedback Banner -->
+                <div id="feedbackBanner" class="hidden p-4 rounded-2xl mb-4 text-sm font-bold flex items-start gap-3 border-2 shadow-sm">
+                    <i id="feedbackIcon" class="fa-solid text-2xl mt-0.5 shrink-0"></i>
+                    <div>
+                        <div id="feedbackTitle" class="font-black text-base"></div>
+                        <div id="feedbackText" class="mt-1 font-medium leading-relaxed"></div>
+                    </div>
+                </div>
+
+                <!-- Next Button -->
+                <div class="flex justify-end">
+                    <button id="nextBtn" onclick="nextQuestion()" class="hidden btn-friendly bg-blue-600 hover:bg-blue-700 text-white font-display font-bold text-base px-8 py-3 rounded-2xl shadow-md inline-flex items-center gap-2">
+                        <span>Soalan Seterusnya</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </section>
+
+            <!-- 3. RESULT SCREEN -->
+            <section id="resultScreen" class="hidden card-friendly rounded-3xl p-6 sm:p-10 text-center relative my-2 border-t-8 border-t-amber-400">
+                <div class="mb-3 inline-block bg-amber-100 p-4 rounded-full text-amber-600 border-2 border-amber-300 shadow-sm bubble-glow">
+                    <i class="fa-solid fa-award text-5xl"></i>
+                </div>
+
+                <h2 class="font-display text-3xl sm:text-4xl font-black text-slate-800 mb-1">
+                    Syabas, <span id="resPlayerName" class="text-blue-600">Pelajar</span>! 🎉
+                </h2>
+                <p class="text-slate-600 font-bold text-sm sm:text-base mb-6">
+                    Anda telah berjaya menjawab <span class="font-extrabold text-emerald-600">semua soalan</span> dengan betul!
+                </p>
+
+                <!-- Score Grid -->
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 max-w-lg mx-auto mb-6">
+                    <div class="bg-emerald-50 p-4 rounded-2xl border-2 border-emerald-200">
+                        <div class="text-xs text-emerald-700 font-black uppercase">Markah Akhir</div>
+                        <div id="finalScore" class="font-display text-3xl font-black text-emerald-600 mt-0.5">200</div>
+                    </div>
+                    <div class="bg-amber-50 p-4 rounded-2xl border-2 border-amber-200">
+                        <div class="text-xs text-amber-700 font-black uppercase">Ketepatan Awal</div>
+                        <div id="accuracyPercent" class="font-display text-3xl font-black text-amber-600 mt-0.5">100%</div>
+                    </div>
+                    <div class="bg-indigo-50 p-4 rounded-2xl border-2 border-indigo-200 col-span-2 sm:col-span-1">
+                        <div class="text-xs text-indigo-700 font-black uppercase">Ulangan Salah</div>
+                        <div id="wrongAttemptsCount" class="font-display text-3xl font-black text-indigo-600 mt-0.5">0</div>
+                    </div>
+                </div>
+
+                <div id="motivationMsg" class="bg-slate-50 p-4 rounded-2xl border-2 border-slate-200 mb-6 max-w-lg mx-auto text-sm text-slate-700 font-bold leading-relaxed">
+                    "Tahniah, penguasaan anda dalam Subtopik 3.1.7 RBT Tingkatan 3 sangat cemerlang!"
+                </div>
+
+                <div class="flex flex-col sm:flex-row justify-center gap-3">
+                    <button onclick="restartQuiz()" class="btn-friendly bg-blue-600 hover:bg-blue-700 text-white font-display font-bold text-lg px-8 py-3.5 rounded-2xl shadow-lg inline-flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-rotate-right"></i>
+                        <span>Cuba Lagi</span>
+                    </button>
+                    <button onclick="toggleLeaderboardModal(true)" class="btn-friendly bg-amber-400 hover:bg-amber-500 text-slate-900 font-display text-lg px-6 py-3.5 rounded-2xl shadow-lg border-2 border-amber-200 inline-flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-list-ol"></i>
+                        <span>Papan Ranking</span>
+                    </button>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Leaderboard Modal -->
+    <div id="leaderboardModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-3xl p-6 w-full max-w-lg shadow-2xl border-4 border-amber-400 relative max-h-[90vh] flex flex-col">
+            <button onclick="toggleLeaderboardModal(false)" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-xl w-9 h-9 flex items-center justify-center rounded-full bg-slate-100">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="text-center mb-4">
+                <div class="inline-block bg-amber-100 text-amber-600 p-3 rounded-full mb-1">
+                    <i class="fa-solid fa-trophy text-3xl"></i>
+                </div>
+                <h3 class="font-display text-2xl font-black text-slate-800">Papan Ranking Murid</h3>
+                <p class="text-xs font-bold text-slate-500">Kedudukan pelajar terbaik kuiz RBT Subtopik 3.1.7</p>
+            </div>
+
+            <div id="leaderboardList" class="flex-grow overflow-y-auto space-y-2 pr-1 my-2"></div>
+
+            <div class="mt-4 pt-3 border-t border-slate-100 flex justify-between items-center text-xs">
+                <button onclick="clearLeaderboard()" class="text-rose-500 hover:underline font-bold">Padam Rekod</button>
+                <button onclick="toggleLeaderboardModal(false)" class="bg-slate-800 text-white font-bold px-6 py-2 rounded-xl">Tutup</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="w-full text-center py-4 text-xs font-bold text-slate-500 bg-white/80 border-t border-slate-200">
+        RBT Tingkatan 3 • Subtopik 3.1.7: Menghasilkan Reka Bentuk Pengiklanan
+    </footer>
+
+    <!-- JavaScript Quiz Logic -->
+    <script>
+        function setSafeText(id, text) {
+            const el = document.getElementById(id);
+            if (el) el.innerText = text;
+        }
+
+        const rawQuestionsDatabase = [
+            // ================= BAHAGIAN A (SOALAN OBJEKTIF) =================
+            {
+                id: 1,
+                subtopic: "Bahagian A",
+                question: "Apakah tujuan utama menghasilkan reka bentuk pengiklanan?",
+                correctText: "Menarik perhatian pengguna terhadap produk",
+                wrongTexts: ["Menghias produk sahaja", "Menyimpan produk", "Mengurangkan saiz produk"],
+                explanation: "Tujuan utama reka bentuk pengiklanan adalah untuk menarik perhatian pengguna terhadap produk dan menyampaikan maklumat bagi tujuan jualan."
+            },
+            {
+                id: 2,
+                subtopic: "Bahagian A",
+                question: "Apakah perkara yang perlu dikenal pasti sebelum menghasilkan sesuatu iklan?",
+                correctText: "Sasaran pengguna",
+                wrongTexts: ["Saiz bilik", "Bilangan pekerja", "Tempat menyimpan produk"],
+                explanation: "Mengenal pasti sasaran pengguna adalah langkah penting supaya mesej iklan dapat disesuaikan mengikut kehendak kumpulan sasaran."
+            },
+            {
+                id: 3,
+                subtopic: "Bahagian A",
+                question: "Slogan dalam sesuatu iklan hendaklah",
+                correctText: "ringkas dan mudah diingati",
+                wrongTexts: ["panjang dan sukar difahami", "menggunakan banyak perenggan", "tidak berkaitan dengan produk"],
+                explanation: "Slogan yang efektif perlulah ringkas, padat, dan mudah diingati oleh pengguna."
+            },
+            {
+                id: 4,
+                subtopic: "Bahagian A",
+                question: "Penggunaan gambar produk dalam iklan bertujuan untuk",
+                correctText: "menunjukkan produk dengan lebih jelas",
+                wrongTexts: ["memenuhi ruang kosong", "mengelirukan pengguna", "menggantikan semua maklumat"],
+                explanation: "Gambar memberikan gambaran visual yang jelas tentang bentuk, warna, dan ciri produk secara terus."
+            },
+            {
+                id: 5,
+                subtopic: "Bahagian A",
+                question: "Antara berikut, yang manakah penting dalam reka bentuk iklan yang berkesan?",
+                correctText: "Maklumat yang jelas",
+                wrongTexts: ["Tulisan yang terlalu kecil", "Warna yang tidak sesuai", "Terlalu banyak maklumat"],
+                explanation: "Maklumat yang jelas membantu pengguna memahami fungsi, faedah, dan kelebihan produk dengan pantas."
+            },
+            {
+                id: 6,
+                subtopic: "Bahagian A",
+                question: "Pemilihan warna dalam reka bentuk pengiklanan perlu",
+                correctText: "sesuai dengan produk dan sasaran pengguna",
+                wrongTexts: ["dibuat secara rawak", "menggunakan satu warna sahaja", "mengelakkan warna yang menarik"],
+                explanation: "Skim warna perlu sepadan dengan tema produk dan mampu menarik emosi sasaran pengguna."
+            },
+            {
+                id: 7,
+                subtopic: "Bahagian A",
+                question: "Apakah fungsi tajuk utama dalam sesuatu iklan?",
+                correctText: "Menarik perhatian pengguna",
+                wrongTexts: ["Menyembunyikan produk", "Menambah kos iklan", "Mengecilkan ruang iklan"],
+                explanation: "Tajuk utama (headline) ialah elemen pertama yang dibaca dan berfungsi untuk mencuri perhatian pengguna."
+            },
+            {
+                id: 8,
+                subtopic: "Bahagian A",
+                question: "Susun atur yang baik dalam iklan dapat",
+                correctText: "menjadikan iklan lebih tersusun dan mudah difahami",
+                wrongTexts: ["menyukarkan pengguna membaca maklumat", "menghilangkan gambar produk", "mengurangkan daya tarikan iklan"],
+                explanation: "Susun atur (layout) yang kemas meletakkan gambar dan teks secara seimbang supaya pembaca tidak keliru."
+            },
+            {
+                id: 9,
+                subtopic: "Bahagian A",
+                question: "Maklumat mengenai kelebihan produk perlu dimasukkan supaya",
+                correctText: "pengguna mengetahui manfaat produk",
+                wrongTexts: ["pengguna tidak mengetahui fungsi produk", "iklan menjadi lebih panjang", "harga produk meningkat"],
+                explanation: "Menyertakan kelebihan produk membolehkan pengguna menilai faedah yang bakal diterima."
+            },
+            {
+                id: 10,
+                subtopic: "Bahagian A",
+                question: "Apakah yang perlu dilakukan selepas menghasilkan lakaran awal iklan?",
+                correctText: "Membuat penambahbaikan terhadap reka bentuk",
+                wrongTexts: ["Memadam semua maklumat", "Menukar produk", "Menghentikan proses penghasilan"],
+                explanation: "Selepas lakaran awal dibuat, penilaian mesti dilakukan untuk membuat penambahbaikan sebelum hasil akhir dimuktamadkan."
+            },
+            {
+                id: 11,
+                subtopic: "Bahagian A",
+                question: "Antara berikut, yang manakah contoh maklumat yang sesuai dimasukkan dalam iklan?",
+                correctText: "Nama produk",
+                wrongTexts: ["Nama semua pekerja syarikat", "Jadual sekolah", "Bilangan kerusi di kedai"],
+                explanation: "Nama produk merupakan identiti penting yang wajib dipaparkan dalam iklan."
+            },
+            {
+                id: 12,
+                subtopic: "Bahagian A",
+                question: "Mengapakah saiz tulisan perlu diberi perhatian semasa menghasilkan iklan?",
+                correctText: "Supaya maklumat mudah dibaca",
+                wrongTexts: ["Supaya iklan kelihatan kosong", "Supaya semua tulisan sama kecil", "Supaya gambar tidak kelihatan"],
+                explanation: "Hierarki dan saiz tulisan yang sesuai memudahkan pembaca membaca maklumat mengikut tahap kepentingan."
+            },
+            {
+                id: 13,
+                subtopic: "Bahagian A",
+                question: "Reka bentuk pengiklanan yang kreatif dapat",
+                correctText: "meningkatkan daya tarikan produk",
+                wrongTexts: ["mengurangkan perhatian pengguna", "menyukarkan penyampaian maklumat", "menghilangkan identiti produk"],
+                explanation: "Kreativiti membolehkan iklan tampil unik dan menarik perhatian lebih ramai bakal pembeli."
+            },
+            {
+                id: 14,
+                subtopic: "Bahagian A",
+                question: "Apakah ciri mesej pengiklanan yang baik?",
+                correctText: "Jelas dan mudah difahami",
+                wrongTexts: ["Panjang dan mengelirukan", "Tidak berkaitan dengan produk", "Mengandungi terlalu banyak perkataan"],
+                explanation: "Mesej pengiklanan mestilah padat, jelas, serta tidak menimbulkan salah faham."
+            },
+            {
+                id: 15,
+                subtopic: "Bahagian A",
+                question: "Sebelum reka bentuk iklan disiapkan, murid perlu memastikan bahawa",
+                correctText: "semua elemen iklan sesuai dan tersusun",
+                wrongTexts: ["gambar produk dibuang", "slogan tidak digunakan", "maklumat produk dikosongkan"],
+                explanation: "Semua elemen seperti tajuk, gambar, warna, dan susun atur mesti diperiksa supaya harmoni dan menarik."
+            },
+
+            // ================= BAHAGIAN B (BETUL / SALAH) =================
+            {
+                id: 16,
+                subtopic: "Bahagian B",
+                question: "Reka bentuk pengiklanan perlu mengambil kira sasaran pengguna.",
+                correctText: "Betul",
+                wrongTexts: ["Salah"],
+                explanation: "Pernyataan ini BETUL. Pengiklanan yang berjaya dibina mengikut latar belakang, umur, dan minat sasaran pengguna."
+            },
+            {
+                id: 17,
+                subtopic: "Bahagian B",
+                question: "Penggunaan terlalu banyak tulisan kecil menjadikan iklan lebih mudah dibaca.",
+                correctText: "Salah",
+                wrongTexts: ["Betul"],
+                explanation: "Pernyataan ini SALAH. Tulisan yang terlalu banyak dan kecil menyukarkan pembacaan dan menjadikan iklan padat serta tidak menarik."
+            },
+            {
+                id: 18,
+                subtopic: "Bahagian B",
+                question: "Slogan yang ringkas dan menarik dapat membantu pengguna mengingati sesuatu produk.",
+                correctText: "Betul",
+                wrongTexts: ["Salah"],
+                explanation: "Pernyataan ini BETUL. Slogan yang berkesan melekat dalam ingatan pengguna secara jangka panjang."
+            },
+            {
+                id: 19,
+                subtopic: "Bahagian B",
+                question: "Gambar, warna, tulisan dan susun atur merupakan perkara yang perlu diberi perhatian semasa menghasilkan reka bentuk pengiklanan.",
+                correctText: "Betul",
+                wrongTexts: ["Salah"],
+                explanation: "Pernyataan ini BETUL. Kesemua elemen visual tersebut membentuk kesatuan reka bentuk iklan yang menarik."
+            },
+            {
+                id: 20,
+                subtopic: "Bahagian B",
+                question: "Reka bentuk pengiklanan tidak perlu dinilai atau ditambah baik selepas dihasilkan.",
+                correctText: "Salah",
+                wrongTexts: ["Betul"],
+                explanation: "Pernyataan ini SALAH. Iklan perlu sentiasa dinilai dan diperbaiki untuk memastikan kualiti dan keberkesanannya mencapai tahap optimum."
+            }
+        ];
+
+        let playerInfo = { name: "", class: "" };
+        let activeQuestions = [];
+        let questionQueue = [];
+        let totalOriginalQuestions = 0;
+        let initialScore = 0;
+        let totalFirstAttempts = 0;
+        let wrongAttempts = 0;
+        let isBGMPlaying = false;
+        let canAnswer = true;
+
+        let boosterCounts = { c5050: 2, cHint: 2, cSkip: 1 };
+        let audioCtx = null;
+
+        function initAudio() {
+            if (!audioCtx) {
+                try {
+                    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                } catch(e) {}
+            }
+        }
+
+        let bgmInterval = null;
+        function playBGMNotes() {
+            if (!isBGMPlaying || !audioCtx) return;
+            const notes = [261.63, 293.66, 329.63, 392.00, 440.00, 523.25];
+            const note = notes[Math.floor(Math.random() * notes.length)];
+            try {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(note, audioCtx.currentTime);
+                gain.gain.setValueAtTime(0.01, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 1.2);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 1.2);
+            } catch (e) {}
+        }
+
+        function toggleBGM() {
+            initAudio();
+            isBGMPlaying = !isBGMPlaying;
+            const statusText = document.getElementById('bgmStatus');
+            const icon = document.getElementById('bgmIcon');
+
+            if (isBGMPlaying) {
+                if (audioCtx && audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+                if (statusText) statusText.innerText = "Muzik: ON";
+                if (icon) icon.className = "fa-solid fa-music text-amber-500 animate-bounce";
+                bgmInterval = setInterval(playBGMNotes, 500);
+            } else {
+                if (statusText) statusText.innerText = "Muzik: OFF";
+                if (icon) icon.className = "fa-solid fa-volume-xmark text-slate-400";
+                clearInterval(bgmInterval);
+            }
+        }
+
+        function playSFX(type) {
+            initAudio();
+            if (!audioCtx) return;
+
+            try {
+                if (type === 'correct') {
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(523.25, audioCtx.currentTime);
+                    osc.frequency.setValueAtTime(659.25, audioCtx.currentTime + 0.08);
+                    osc.frequency.setValueAtTime(783.99, audioCtx.currentTime + 0.16);
+                    gain.gain.setValueAtTime(0.12, audioCtx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.35);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.35);
+                } else if (type === 'wrong') {
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(220, audioCtx.currentTime);
+                    osc.frequency.setValueAtTime(175, audioCtx.currentTime + 0.12);
+                    gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+                    gain.gain.exponentialRamp
